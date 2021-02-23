@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>ToDo</title>
+</head>
+<body>
+  <div class="container">
+    <h1>todos</h1>
+    <div class="todo-input" >
+      <form class="input" action="">
+        <input  type="text" placeholder="What needs to be done?">
+      </form>
+    </div>
+    <div class="todo-list">
+
+      <ul class="todo-list--ul" data-tab="all">
+        
+        <!-- <li class="todo-item">
+          <div class="todo-item--inner">
+
+            <div class="todo-icon">
+              <input type="checkbox" name="" id="">
+            </div>
+            <span class="todo-text flex-grow">text</span>
+            <div class="delete-todo"> <img class="delete-img
+              " src="./assets/icons/close.svg" alt="">
+            </div>
+
+          </div>
+        </li> -->
+        
+        <!-- <li class="last-todo-item">
+          <div class="todo-item last-todo-item--inner">
+            
+            <div class="ltd-button">5 items left</div>
+            <div class="ltd-button ltd-button-tabs">
+
+              <button class="button button-active">All</button>
+              <button class="button">Active</button>
+              <button class="button">Complited</button>
+
+            </div>
+          </div>
+        </li> -->
+      </ul>
+
+      <ul class="todo-list--ul" data-tab="active" hidden>
+        
+        <!-- <li class="todo-item">
+          <div class="todo-item--inner">
+
+            <div class="todo-icon">
+              <input type="checkbox" name="" id="">
+            </div>
+            <span class="todo-text flex-grow">text</span>
+            <div class="delete-todo"> X
+            </div>
+
+          </div>
+        </li> -->
+        
+        <!-- <li class="last-todo-item">
+          <div class="todo-item last-todo-item--inner">
+            <div class="ltd-button">5 items left</div>
+            <div class="ltd-button ltd-button-tabs">
+
+              <button class="button button-active">All</button>
+              <button class="button">Active</button>
+              <button class="button">Complited</button>
+
+            </div>
+          </div>
+        </li> -->
+      </ul>
+
+      <ul class="todo-list--ul" data-tab="completed" hidden>
+        
+        <!-- <li class="todo-item">
+          <div class="todo-item--inner">
+
+            <div class="todo-icon">
+              <input type="checkbox" name="" id="">
+            </div>
+            <span class="todo-text flex-grow">text</span>
+            <div class="delete-todo"> X
+             
+            </div>
+
+          </div>
+        </li> -->
+        
+        <!-- <li class="last-todo-item">
+          <div class="todo-item last-todo-item--inner">
+            <div class="ltd-button">5 items left</div>
+            <div class="ltd-button ltd-button-tabs">
+
+              <button class="button button-active">All</button>
+              <button class="button">Active</button>
+              <button class="button">Complited</button>
+
+            </div>
+          </div>
+        </li> -->
+      </ul>
+      
+      <div class="last-todo-item">
+          <div class="todo-item last-todo-item--inner">
+            <div class="ltd-button">5 items left</div>
+            <div class="ltd-button ltd-button-tabs">
+
+              <button class="button button-active" data-button-type="all">All</button>
+              <button class="button" data-button-type="active">Active</button>
+              <button class="button" data-button-type="completed">Completed</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+  </div>
+</body>
+</html>
