@@ -99,9 +99,9 @@ const countTodos = () => {
   let countElement = document.querySelector(".ltd-button");
 
   if (count === 1) {
-    countElement.textContent = count + " item left";
+    countElement.textContent = count + " todo item";
   } else {
-    countElement.textContent = count + " items left";
+    countElement.textContent = count + " todo items";
   }
 };
 

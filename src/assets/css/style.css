@@ -5,13 +5,6 @@
 body {
   padding: 0;
   margin: 0;
-  /* color: darkgray; */
-  /* background-color:  #6f38ad; */
-  /* background: rgb(32,13,40);
-  background: linear-gradient(0deg, rgba(32,13,40,1) 14%, rgba(111,56,173,1) 68%, rgba(143,89,190,1) 100%); */
-
-  /* background: rgb(68,27,84);
-  background: linear-gradient(0deg, rgba(68,27,84,1) 14%, rgba(111,56,173,1) 68%, rgba(143,89,190,1) 100%); */
 
   background: rgb(116, 46, 143);
   background: linear-gradient(
@@ -30,7 +23,6 @@ body {
 
   min-height: 100vh;
   width: 700px;
-  margin: 0 auto;
 }
 
 h1 {
@@ -42,6 +34,7 @@ h1 {
 
 .todo-list {
   min-width: 500px;
+  position: relative;
 }
 
 .todo-list--ul {
@@ -68,6 +61,14 @@ h1 {
   margin-bottom: 20vh;
   height: 55px;
   border-radius: 0 0 5px 5px;
+  z-index: 1000;
+}
+
+.last-todo-item--container {
+  position: sticky;
+  bottom: 0;
+  z-index: 999;
+  background: rgba(111, 56, 173, 1);
 }
 
 .flex-grow {
@@ -157,12 +158,7 @@ h1 {
   background-color: rgb(140, 56, 173);
   opacity: 0.3;
   text-decoration: line-through;
-  /* color: #fff; */
 }
-
-/* .checked-text {
-  text-decoration: line-through;
-} */
 
 .todo-text-input {
   display: block;
