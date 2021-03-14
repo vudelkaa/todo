@@ -246,7 +246,7 @@ const editTodo = (event) => {
     textarea.remove();
 
     imgArea.firstChild.classList.replace("edit-img", "delete-img");
-    imgArea.firstChild.setAttribute("src", "./assets/icons/close.svg");
+    imgArea.firstChild.setAttribute("src", "./assets/icons/close.png");
   })
   
 };
