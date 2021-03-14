@@ -61,7 +61,7 @@ const createTodo = (title, completed, id, elemUl) => {
   let img = document.createElement('img');
   deleteDiv.classList.add("delete-todo");
   img.classList.add('delete-img');
-  img.setAttribute("src", "./assets/icons/close.svg");
+  img.setAttribute("src", "./assets/icons/close.png");
 
   elemUl.prepend(li);
   li.prepend(containerDiv);
@@ -126,17 +126,24 @@ const addTodo = (event) => {
 };
 
 const deleteTodo = (event) => {
-  if (event.target.classList.value === "delete-img") {
-    todos = todos.filter(
-      (todo) => todo.id != event.target.closest(".todo-item").dataset.id
-    );
+  if (!event.target.classList.contains("delete-img")) {
+    return;
+  }
 
-    tabsTodoList.forEach((list) => list.innerHTML = "");
-    listTodo(todos);
+  todos = todos.filter(
+    (todo) => todo.id != event.target.closest(".todo-item").dataset.id
+  );
 
-    localStorage.setItem('todos', JSON.stringify(todos));
-    count--;
+  tabsTodoList.forEach((list) => (list.innerHTML = ""));
+  listTodo(todos);
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+
+  count--;
+  if (todos.length === count) {
     countTodos();
+  } else {
+    count++;
   }
 };
 
@@ -169,45 +176,79 @@ const editTodo = (event) => {
     return;
   }
 
-  let form = document.createElement("form"),
-    input = document.createElement("input");
+  let textarea = document.createElement("div");
+  const firsValue = elem.textContent;
 
-  input.value = elem.textContent;
-  input.classList.add('input-edit', 'todo-text-input');
-  input.setAttribute("type", "text");
+  textarea.textContent = elem.textContent;
+  textarea.classList.add("input-edit", "todo-text-input");
+  textarea.setAttribute('contenteditable', 'true');
 
   elem.textContent = "";
-  elem.append(form);
-  form.append(input);
+  elem.append(textarea);
 
-  form.addEventListener("submit", (e) => {
-    if (e.target.tagName !== "FORM") {
+  const imgArea = elem.nextSibling;
+  imgArea.firstChild.classList.replace('delete-img', 'edit-img');
+  imgArea.firstChild.setAttribute('src', './assets/icons/edit.png');
+
+  const submitEditTodo = () => {
+    if (textarea.textContent !== firsValue) {
+      elem.textContent = textarea.textContent;
+
+      todos.map((todo) => {
+        if (todo.id == elem.closest(".todo-item").dataset.id) {
+          todo.title = textarea.textContent;
+        }
+      });
+
+      tabsTodoList.forEach((todoList) => (todoList.innerHTML = ""));
+      listTodo(todos);
+
+      localStorage.setItem("todos", JSON.stringify(todos));
+    } else {
+      elem.textContent = firsValue;
+    }
+
+    textarea.remove();
+    imgArea.firstChild.classList.replace("edit-img", "delete-img");
+    imgArea.firstChild.setAttribute("src", "./assets/icons/close.png");
+
+    // document.removeEventListener('keydown', pressEnter);
+  };
+
+  const pressEnter = (event) => {
+    if(event.code !== 'Enter') {
+      return;
+    }
+    console.dir(event);
+    submitEditTodo();
+  }
+
+  document.addEventListener('keyup', pressEnter);
+
+  
+  imgArea.addEventListener('click' , e => {
+    if (!e.target.classList.contains("edit-img") ||
+      e.target.classList.contains("delete-img")
+    ) {
       return;
     }
 
-    e.preventDefault();
-    elem.textContent = input.value;
-    form.remove();
-
-    todos.map(todo => {
-      if (todo.id == event.target.closest('.todo-item').dataset.id) {
-        todo.title = input.value;
-
-        tabsTodoList.forEach(todoList => todoList.innerHTML = '');
-        listTodo(todos);
-      }
-    });
-
-    localStorage.setItem('todos', JSON.stringify(todos));
+    submitEditTodo();
   });
 
-  document.body.addEventListener('click', (e) => {
-    if (e.target.classList.value.includes('input-edit')) {
+  document.body.addEventListener("mousedown", e => {
+    if (e.target.classList.contains('input-edit') ||
+        e.target.classList.contains('edit-img')) {
       return;
     }
-    elem.textContent = input.value;
-    form.remove();
+
+    elem.textContent = firsValue;
+    textarea.remove();
+
+    imgArea.firstChild.classList.replace("edit-img", "delete-img");
+    imgArea.firstChild.setAttribute("src", "./assets/icons/close.svg");
   })
+  
 };
 
 // tabs
@@ -236,7 +277,7 @@ window.addEventListener("DOMContentLoaded", () => {
   listTodo();
 
   input.addEventListener("submit", addTodo);
-  todoListContainer.addEventListener("click", deleteTodo);
+  todoListContainer.addEventListener("mousedown", deleteTodo);
   todoListContainer.addEventListener("change", checkedTodo);
   todoListContainer.addEventListener("dblclick", editTodo);
   tabsButtonsContainer.addEventListener("click", tabDone);
