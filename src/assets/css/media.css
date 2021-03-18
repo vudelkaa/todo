@@ -1,0 +1,12 @@
+@media (max-width: 425px) {
+  .delete-todo {
+    cursor: pointer;
+    display: flex;
+  }
+
+  .pencil-img {
+    display: block;
+    margin-right: 5px;
+  }
+
+}
