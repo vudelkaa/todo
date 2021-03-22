@@ -81,10 +81,10 @@ const createTodo = (title, completed, id, elemUl) => {
 
   deleteDiv.classList.add("delete-todo");
   img.classList.add("delete-img");
-  img.setAttribute("src", "./assets/icons/close.png");
+  img.setAttribute("src", "./src/assets/icons/close.png");
 
   pencilImg.classList.add("pencil-img");
-  pencilImg.setAttribute("src", "./assets/icons/pencil.png");
+  pencilImg.setAttribute("src", "./src/assets/icons/pencil.png");
 
   elemUl.prepend(li);
   li.prepend(containerDiv);
@@ -113,7 +113,7 @@ const addingTodo = () => {
     event.preventDefault();
 
     let inputValue = event.target.closest('form').querySelector("input").value;
-    console.log(inputValue);
+
     createTodo(inputValue, false, todos.length + 1, tabsTodoList[0]);
     createTodo(inputValue, false, todos.length + 1, tabsTodoList[1]);
 
@@ -213,7 +213,7 @@ const editingTodo = () => {
     elem.append(textarea);
 
     imgArea.classList.replace("delete-img", "edit-img");
-    imgArea.setAttribute("src", "./assets/icons/edit.png");
+    imgArea.setAttribute("src", "./src/assets/icons/edit.png");
 
     const submitEditTodo = () => {
       if (textarea.textContent !== firsValue) {
@@ -235,7 +235,7 @@ const editingTodo = () => {
 
       textarea.remove();
       imgArea.classList.replace("edit-img", "delete-img");
-      imgArea.setAttribute("src", "./assets/icons/close.png");
+      imgArea.setAttribute("src", "./src/assets/icons/close.png");
 
       imgArea.addEventListener("click", null);
       pencilImg.style.display = 'block';
@@ -277,7 +277,7 @@ const editingTodo = () => {
       textarea.remove();
 
       imgArea.classList.replace("edit-img", "delete-img");
-      imgArea.setAttribute("src", "./assets/icons/close.png");
+      imgArea.setAttribute("src", "./src/assets/icons/close.png");
 
       document.removeEventListener("keyup", pressEnter);
       pencilImg.style.display = "block";

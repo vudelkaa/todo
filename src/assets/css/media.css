@@ -11,16 +11,20 @@
 
   .input-add-img {
     display: block;
+    
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     z-index: 100;
+    
     margin: auto;
     margin-right: 25px;
 
     width: 30px;
     height: 30px;
+
+    cursor: pointer;
   }
 
   .delete-img, .edit-img, .pencil-img {
