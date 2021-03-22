@@ -1,4 +1,4 @@
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .delete-todo {
     cursor: pointer;
     display: flex;
@@ -9,4 +9,73 @@
     margin-right: 5px;
   }
 
+  .input-add-img {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    margin: auto;
+    margin-right: 25px;
+
+    width: 30px;
+    height: 30px;
+  }
+
+  .delete-img, .edit-img, .pencil-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .container {
+    width: 90vw;
+    margin: 0 15px;
+    align-items: stretch;
+  }
+
+  .todo-list--ul {
+    min-width: inherit;
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .todo-list--ul .todo-item,
+  .last-todo-item{
+    min-height: 115px;
+    min-width: inherit;   
+  }
+
+  .last-todo-item--container {
+    background: none;
+  }
+
+  .todo-input input {
+    padding-right: 75px;
+    min-width: inherit;
+    width: 100%;
+
+    font-size: 20px;
+  }
+
+  .button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 410px) {
+  .ltd-button {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .todo-input input {
+    font-size: 18px;
+  }
 }

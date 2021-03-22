@@ -106,15 +106,16 @@ const countTodos = () => {
 
 // +++++++++
 const addingTodo = () => {
-  const input = document.querySelector(".input");
+  const input = document.querySelector(".input"),
+    inputIcon = document.querySelector('.input-add-img');
 
   const addTodo = (event) => {
     event.preventDefault();
 
-    let inputValue = event.target.querySelector("input").value;
+    let inputValue = event.target.closest('form').querySelector("input").value;
+    console.log(inputValue);
     createTodo(inputValue, false, todos.length + 1, tabsTodoList[0]);
     createTodo(inputValue, false, todos.length + 1, tabsTodoList[1]);
-    event.target.querySelector("input").value = "";
 
     todos.push({
       id: setID(),
@@ -122,6 +123,7 @@ const addingTodo = () => {
       completed: false,
     });
 
+    event.target.closest("form").querySelector("input").value = "";
     localStorage.setItem("todos", JSON.stringify(todos));
 
     count++;
@@ -129,6 +131,7 @@ const addingTodo = () => {
   };
 
   input.addEventListener("submit", addTodo);
+  inputIcon.addEventListener('click', addTodo);
 };
 
 // +++++++++
@@ -188,17 +191,19 @@ const checkingTodo = () => {
   todoListContainer.addEventListener("change", checkedTodo);
 };
 
-//edit img is gone WHYYYYY
+// ++++++++++
 const editingTodo = () => {
   const editTodo = (event) => {
-    const elem = event.target;
-    if (elem.tagName !== "SPAN") {
-      return;
-    }
-
+    const elem = event.target.closest('.todo-item').querySelector('.todo-text');
+    
     const imgArea = elem.closest('.todo-item').querySelector('.delete-img');
     let textarea = document.createElement("div");
     const firsValue = elem.textContent;
+    const pencilImg = imgArea.parentNode.querySelector('.pencil-img');
+
+    pencilImg.style.display = 'none';
+
+    console.log(imgArea, firsValue);
 
     textarea.textContent = elem.textContent;
     textarea.classList.add("input-edit", "todo-text-input");
@@ -233,6 +238,7 @@ const editingTodo = () => {
       imgArea.setAttribute("src", "./assets/icons/close.png");
 
       imgArea.addEventListener("click", null);
+      pencilImg.style.display = 'block';
     };
 
     const pressEnter = (event) => {
@@ -255,6 +261,7 @@ const editingTodo = () => {
       }
 
       submitEditTodo();
+      pencilImg.style.display = "block";
       document.removeEventListener("keyup", pressEnter);
     });
 
@@ -273,10 +280,23 @@ const editingTodo = () => {
       imgArea.setAttribute("src", "./assets/icons/close.png");
 
       document.removeEventListener("keyup", pressEnter);
+      pencilImg.style.display = "block";
     });
   };
 
-  todoListContainer.addEventListener("dblclick", editTodo);
+  todoListContainer.addEventListener("dblclick", (event) => {
+    if (event.target.tagName !== "SPAN") {
+      return;
+    }
+    editTodo(event);
+  });
+
+  todoListContainer.addEventListener('touchend', (event) => {
+    if(event.target.classList.contains('pencil-img')) {
+      event.preventDefault();
+      editTodo(event);
+    }
+  });
 };
 
 // tabs
