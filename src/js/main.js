@@ -29,25 +29,31 @@ const setID = createID();
 
 // ======= WORKING WITH TODOS =======
 
-const listTodo = () => {
+const listTodo = (tabs = 'allTabs') => {
   //all
-  todos.forEach((todo) => {
-    createTodo(todo.title, todo.completed, todo.id, tabsTodoList[0]);
-  });
+  if (tabs === 'allTabs' || tabs !== 'all') {
+    tabsTodoList[0].innerHTML = '';
+    todos.forEach((todo) => {
+      createTodo(todo.title, todo.completed, todo.id, tabsTodoList[0]);
+    });
+  }
 
   //active
-  todos
-    .filter((todo) => !todo.completed)
-    .forEach((todo) => {
-      createTodo(todo.title, todo.completed, todo.id, tabsTodoList[1]);
+  if (tabs === 'allTabs' || tabs !== 'active') {
+    tabsTodoList[1].innerHTML = '';
+    todos.filter((todo) => !todo.completed)
+      .forEach((todo) => {
+        createTodo(todo.title, todo.completed, todo.id, tabsTodoList[1]);
     });
-
+  }
   //completed
-  todos
-    .filter((todo) => todo.completed)
-    .forEach((todo) => {
-      createTodo(todo.title, todo.completed, todo.id, tabsTodoList[2]);
+  if (tabs === 'allTabs' || tabs !== 'completed') {
+    tabsTodoList[2].innerHTML = '';
+    todos.filter((todo) => todo.completed)
+      .forEach((todo) => {
+        createTodo(todo.title, todo.completed, todo.id, tabsTodoList[2]);
     });
+  }
 
   countTodos();
 };
@@ -148,10 +154,9 @@ const deletingTodo = () => {
       (todo) => todo.id != event.target.closest(".todo-item").dataset.id
     );
 
-    tabsTodoList.forEach((list) => (list.innerHTML = ""));
-    listTodo(todos);
-
-    // event.target.closest(".todo-item").remove();
+    const tabName = event.target.closest('.todo-list--ul').dataset.tab;
+    listTodo(tabName);
+    event.target.closest(".todo-item").remove();
 
     localStorage.setItem("todos", JSON.stringify(todos));
 
@@ -187,10 +192,10 @@ const checkingTodo = () => {
       return item;
     });
 
-    tabsTodoList.forEach((list) => (list.innerHTML = ""));
-
     localStorage.setItem("todos", JSON.stringify(todos));
-    listTodo(todos);
+
+    const tabName = event.target.closest(".todo-list--ul").dataset.tab;
+    listTodo(tabName);
   };
 
   todoListContainer.addEventListener("change", checkedTodo);
@@ -207,8 +212,6 @@ const editingTodo = () => {
     const pencilImg = imgArea.parentNode.querySelector('.pencil-img');
 
     pencilImg.style.display = 'none';
-
-    console.log(imgArea, firsValue);
 
     textarea.textContent = elem.textContent;
     textarea.classList.add("input-edit", "todo-text-input");
@@ -230,8 +233,8 @@ const editingTodo = () => {
           }
         });
 
-        tabsTodoList.forEach((todoList) => (todoList.innerHTML = ""));
-        listTodo(todos);
+        const tabName = elem.closest(".todo-list--ul").dataset.tab;
+        listTodo(tabName);
 
         localStorage.setItem("todos", JSON.stringify(todos));
       } else {
