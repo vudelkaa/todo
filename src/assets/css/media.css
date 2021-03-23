@@ -39,8 +39,8 @@
   }
 
   .container {
-    width: 90vw;
-    margin: 0 15px;
+    /* width: 90vw; */
+    margin: 0 5px;
     align-items: stretch;
   }
 
