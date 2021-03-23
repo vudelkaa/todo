@@ -208,9 +208,9 @@ const editingTodo = () => {
     
     const imgArea = elem.closest('.todo-item').querySelector('.delete-img');
     let textarea = document.createElement("div");
-    const firsValue = elem.textContent;
+    let firsValue = elem.textContent;
     const pencilImg = imgArea.parentNode.querySelector('.pencil-img');
-
+    console.log(firsValue, elem.textContent);
     pencilImg.style.display = 'none';
 
     textarea.textContent = elem.textContent;
@@ -237,59 +237,65 @@ const editingTodo = () => {
         listTodo(tabName);
 
         localStorage.setItem("todos", JSON.stringify(todos));
+
+
+        console.log('now: ' + textarea.textContent + ' was: ' + firsValue);
       } else {
         elem.textContent = firsValue;
       }
 
       textarea.remove();
+      closeEditTextarea();
+    };
+
+    const closeEditTextarea = () => {
       imgArea.classList.replace("edit-img", "delete-img");
       imgArea.setAttribute("src", "./src/assets/icons/close.png");
 
-      imgArea.addEventListener("click", null);
-      pencilImg.style.display = 'block';
-    };
+      if (screen.width <= 768) {
+        pencilImg.style.display = "block";
+      } else {
+        pencilImg.style.display = "none";
+      }
+
+      document.removeEventListener("keyup", pressEnter);
+      document.removeEventListener('mousedown', mouseDownListener);
+      imgArea.removeEventListener("click", clickOnEditImg);
+    }
 
     const pressEnter = (event) => {
       if (event.code !== "Enter") {
         return;
       }
-      console.dir(event);
       submitEditTodo();
-      document.removeEventListener("keyup", pressEnter);
     };
-
     document.addEventListener("keyup", pressEnter);
 
-    imgArea.addEventListener("click", (e) => {
+    const clickOnEditImg = (e) => {
       if (
         !e.target.classList.contains("edit-img") ||
         e.target.classList.contains("delete-img")
       ) {
         return;
       }
-
       submitEditTodo();
-      pencilImg.style.display = "block";
-      document.removeEventListener("keyup", pressEnter);
-    });
+    }
+    imgArea.addEventListener("click", clickOnEditImg);
 
-    document.body.addEventListener("mousedown", (e) => {
-      if (
-        e.target.classList.contains("input-edit") ||
-        e.target.classList.contains("edit-img")
-      ) {
-        return;
-      }
+    const mouseDownListener = (e) => {
+       if (
+         e.target.classList.contains("input-edit") ||
+         e.target.classList.contains("edit-img")
+       ) {
+         return;
+       }
 
-      elem.textContent = firsValue;
-      textarea.remove();
+       elem.textContent = firsValue;
+       textarea.remove();
 
-      imgArea.classList.replace("edit-img", "delete-img");
-      imgArea.setAttribute("src", "./src/assets/icons/close.png");
-
-      document.removeEventListener("keyup", pressEnter);
-      pencilImg.style.display = "block";
-    });
+       closeEditTextarea();
+    }
+    document.addEventListener("mousedown", mouseDownListener);
   };
 
   todoListContainer.addEventListener("dblclick", (event) => {
