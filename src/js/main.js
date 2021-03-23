@@ -92,6 +92,8 @@ const createTodo = (title, completed, id, elemUl) => {
   div.append(input);
   deleteDiv.append(pencilImg);
   deleteDiv.append(img);
+
+  // img.addEventListener('mousedown', deleteTodo);
 };
 
 const countTodos = () => {
@@ -113,12 +115,13 @@ const addingTodo = () => {
     event.preventDefault();
 
     let inputValue = event.target.closest('form').querySelector("input").value;
+    const todoID = setID();
 
-    createTodo(inputValue, false, todos.length + 1, tabsTodoList[0]);
-    createTodo(inputValue, false, todos.length + 1, tabsTodoList[1]);
+    createTodo(inputValue, false, todoID, tabsTodoList[0]);
+    createTodo(inputValue, false, todoID, tabsTodoList[1]);
 
     todos.push({
-      id: setID(),
+      id: todoID,
       title: inputValue,
       completed: false,
     });
@@ -147,6 +150,8 @@ const deletingTodo = () => {
 
     tabsTodoList.forEach((list) => (list.innerHTML = ""));
     listTodo(todos);
+
+    // event.target.closest(".todo-item").remove();
 
     localStorage.setItem("todos", JSON.stringify(todos));
 
