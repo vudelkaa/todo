@@ -126,6 +126,7 @@
 
   .container {
     min-height: calc(100vh - 65px);
+    position: relative;
   }
   
   .todo-list--ul {
@@ -145,14 +146,28 @@
     margin: 0; 
   }
 
+  .todo-input {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
   .todo-input input {
     font-size: 18px;
     border: none !important;
 
-    border-radius: 8px 8px 0 0;
-    border-bottom: 1px solid #7d5b8a !important;
+    border-radius: 9px;
+    border-bottom: 2px solid rgba(111, 56, 173, 1) !important;
     min-height: 70px;
+    margin-bottom: 4px;
   }
+
+  .todo-list {
+    border-radius: 9px 9px 0 0;
+    overflow: hidden;
+  }
+
+
   
 }
 
