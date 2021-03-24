@@ -58,9 +58,14 @@
     flex: 1 1 auto;
   }
 
-  .todo-list--ul .todo-item {
+  /* .todo-list--ul .todo-item {
     min-height: 115px;
     min-width: inherit;   
+  } */
+
+  .todo-item.show {
+    min-height: 115px;
+    min-width: inherit;  
   }
 
   .last-todo-item {
@@ -121,6 +126,7 @@
   
   .todo-list--ul {
     margin-bottom: 65px;
+    border: none;
   }
 
   .last-todo-item { 
@@ -161,8 +167,6 @@
   .ltd-button--display {
     display: none;
   }
-
-  
 
   .todo-list--ul {
     border: none;

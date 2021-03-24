@@ -108,8 +108,11 @@ const createTodo = (title, completed, id, elemUl) => {
   deleteDiv.append(pencilImg);
   deleteDiv.append(img);
 
+  setTimeout(() => {
+    li.classList.add("show");
+  }, 0);
   // img.addEventListener('mousedown', deleteTodo);
-};;
+};
 
 const countTodos = () => {
   let countElement = document.querySelector(".ltd-button");
@@ -165,8 +168,13 @@ const deletingTodo = () => {
 
     const tabName = event.target.closest('.todo-list--ul').dataset.tab;
     listTodo(tabName);
-    event.target.closest(".todo-item").remove();
 
+    event.target.closest(".todo-item").classList.remove("show");
+
+    setTimeout(() => {
+      event.target.closest(".todo-item").remove();
+    }, 300);
+    
     localStorage.setItem("todos", JSON.stringify(todos));
 
     count--;
@@ -213,6 +221,14 @@ const checkingTodo = () => {
 
     const tabName = event.target.closest(".todo-list--ul").dataset.tab;
     listTodo(tabName);
+    if (tabName !== 'all') {
+      // input.closest(".todo-item").remove();
+      input.closest(".todo-item").classList.remove("show");
+
+      setTimeout(() => {
+        input.closest(".todo-item").remove();
+      }, 300); 
+    }
   };
 
   todoListContainer.addEventListener("click", checkedTodo);
