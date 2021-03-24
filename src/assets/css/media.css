@@ -161,6 +161,9 @@
     min-height: 70px;
     margin-bottom: 4px;
   }
+  .todo-item:first-child {
+    border-radius: 9px 9px 0 0;
+  }
 
   .todo-list {
     border-radius: 9px 9px 0 0;
