@@ -73,9 +73,6 @@ const createTodo = (title, completed, id, elemUl) => {
   span.classList.add("todo-text", "flex-grow");
   span.innerHTML = title;
 
-  // let input = document.createElement("input");
-  // input.setAttribute("type", "checkbox");
-
   let input = document.createElement("img");
   input.classList.add('checked-img');
 
@@ -110,7 +107,7 @@ const createTodo = (title, completed, id, elemUl) => {
 
   setTimeout(() => {
     li.classList.add("show");
-  }, 0);
+  }, 10);
   // img.addEventListener('mousedown', deleteTodo);
 };
 

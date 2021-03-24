@@ -64,7 +64,7 @@
   } */
 
   .todo-item.show {
-    min-height: 115px;
+    height: 100px;
     min-width: inherit;  
   }
 
