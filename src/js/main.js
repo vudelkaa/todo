@@ -73,8 +73,17 @@ const createTodo = (title, completed, id, elemUl) => {
   span.classList.add("todo-text", "flex-grow");
   span.innerHTML = title;
 
-  let input = document.createElement("input");
-  input.setAttribute("type", "checkbox");
+  // let input = document.createElement("input");
+  // input.setAttribute("type", "checkbox");
+
+  let input = document.createElement("img");
+  input.classList.add('checked-img');
+
+  if (completed) {
+    input.setAttribute("src", "./src/assets/icons/checked.png");
+  } else {
+    input.setAttribute("src", "./src/assets/icons/no-checked.png");
+  }
 
   input.checked = completed;
   if (completed) {
@@ -100,7 +109,7 @@ const createTodo = (title, completed, id, elemUl) => {
   deleteDiv.append(img);
 
   // img.addEventListener('mousedown', deleteTodo);
-};
+};;
 
 const countTodos = () => {
   let countElement = document.querySelector(".ltd-button");
@@ -175,14 +184,22 @@ const deletingTodo = () => {
 const checkingTodo = () => {
   const checkedTodo = (event) => {
     const input = event.target;
+    console.log(input);
+
     if (
-      input.tagName !== "INPUT" ||
+      !input.classList.contains('checked-img') ||
       input.classList.value.includes("input-edit")
     ) {
       return;
     }
 
     input.closest(".todo-item").classList.toggle("checked");
+    
+    if (input.closest(".todo-item").classList.contains('checked')) {
+      input.setAttribute("src", "./src/assets/icons/checked.png");
+    } else {
+      input.setAttribute("src", "./src/assets/icons/no-checked.png");
+    }
 
     const id = input.closest(".todo-item").dataset.id;
     todos.map((item) => {
@@ -198,7 +215,7 @@ const checkingTodo = () => {
     listTodo(tabName);
   };
 
-  todoListContainer.addEventListener("change", checkedTodo);
+  todoListContainer.addEventListener("click", checkedTodo);
 };
 
 // ++++++++++
