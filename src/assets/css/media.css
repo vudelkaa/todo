@@ -123,6 +123,10 @@
   body {
     background-color: rgba(111, 56, 173, 1) ;
   }
+
+  .container {
+    min-height: calc(100vh - 65px);
+  }
   
   .todo-list--ul {
     margin-bottom: 65px;

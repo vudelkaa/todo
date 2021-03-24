@@ -222,7 +222,6 @@ const checkingTodo = () => {
     const tabName = event.target.closest(".todo-list--ul").dataset.tab;
     listTodo(tabName);
     if (tabName !== 'all') {
-      // input.closest(".todo-item").remove();
       input.closest(".todo-item").classList.remove("show");
 
       setTimeout(() => {
