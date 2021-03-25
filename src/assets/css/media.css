@@ -115,7 +115,7 @@
     background: none;
     /* background-color: #592d8a; */
     background-color: #392053;
-    margin-bottom: 80px;
+    margin-bottom: 75px;
   }
 
   .container {
@@ -125,6 +125,7 @@
   
   .todo-list--ul {
     border: none;
+    border: 5px solid #392053 !important;
   }
 
   .last-todo-item { 
@@ -150,7 +151,9 @@
     border: none !important;
 
     border-radius: 9px;
-    border-bottom: 2px solid #592d8a !important;
+    border: 5px solid #392053 !important;
+    border-bottom: 3px solid #392053 !important;
+    border-top: 3px solid #392053 !important;
     min-height: 70px;
     margin-bottom: 4px;
 
