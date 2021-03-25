@@ -101,7 +101,7 @@ body {
 }
 
 h1 {
-  color: #fdfafd;
+  color: #f2f3f4;
   margin: 40px auto;
 }
 
@@ -124,6 +124,7 @@ h1 {
 
 .last-todo-item {
   min-height: 75px;
+  /* height: 75px; */
 }
 
 .todo-list--ul .todo-item,
@@ -133,7 +134,7 @@ h1 {
   padding: 0 25px;
   height: 0;
 
-  background-color: #fdfafd;
+  background-color: #f2f3f4; /* */
   border-top: 1px solid lightgray;
 }
 
@@ -167,7 +168,7 @@ h1 {
   border-radius: 0 0 5px 5px;
   z-index: 1000;
 
-  min-height: 65px;
+  /* min-height: 65px; */
   min-width: 500px;
 }
 
@@ -231,6 +232,7 @@ h1 {
 
   width: 25px;
   height: 25px;
+  cursor: pointer;
 }
 
 .input-add-img,
@@ -248,8 +250,8 @@ h1 {
 
 .button {
   cursor: pointer;
-  background-color: rgb(253, 250, 253);
-  border: 2px solid rgb(253, 250, 253);
+  background-color: inherit;
+  border: 2px solid inherit;
   border-radius: 8px;
   padding: 8px;
 }
@@ -264,7 +266,7 @@ h1 {
   min-width: 500px;
   border: 1px solid #7d5b8a;
   /* border-bottom: 2px solid #7d5b8a; */
-  background-color: rgb(253, 250, 253);
+  background-color: #f2f3f4;
 
   padding: 20px 25px;
   font-size: 20px;
