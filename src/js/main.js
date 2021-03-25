@@ -189,7 +189,6 @@ const deletingTodo = () => {
 const checkingTodo = () => {
   const checkedTodo = (event) => {
     const input = event.target;
-    console.log(input);
 
     if (
       !input.classList.contains('checked-img') ||
@@ -239,7 +238,6 @@ const editingTodo = () => {
     let textarea = document.createElement("div");
     let firsValue = elem.textContent;
     const pencilImg = imgArea.parentNode.querySelector('.pencil-img');
-    console.log(firsValue, elem.textContent);
     pencilImg.style.display = 'none';
 
     textarea.textContent = elem.textContent;
@@ -266,9 +264,7 @@ const editingTodo = () => {
         listTodo(tabName);
 
         localStorage.setItem("todos", JSON.stringify(todos));
-
-
-        console.log('now: ' + textarea.textContent + ' was: ' + firsValue);
+        
       } else {
         elem.textContent = firsValue;
       }
