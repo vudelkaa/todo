@@ -90,10 +90,6 @@
   .button {
     padding: 10px 15px;
   }
-
-  /* .checked {
-    opacity: 0.6;
-  } */
 }
 
 @media (min-width: 411px) {
@@ -127,7 +123,6 @@
   }
   
   .todo-list--ul {
-    /* margin-bottom: 65px; */
     border: none;
   }
 
@@ -164,8 +159,6 @@
 
   .todo-item:last-child {
     border-radius:  0 0 9px 9px;
-    /* overflow: hidden; */
-
   }
 
   .todo-list {
@@ -190,15 +183,12 @@
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    /* padding-top: 10px;
-    margin-bottom: 10px; */
   }
 
   .ltd-button-tabs {
     display: flex;
-    justify-content: center;
-    /* flex-direction: column-reverse; */
-    width: 100%;
+    justify-content: space-around;
+    width: calc(100% - 20px);
   }
 
   .ltd-button--display {
